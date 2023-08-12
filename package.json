@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Giftojcs/LightBnB/issues"
   },
-  "homepage": "https://github.com/Giftojcs/LightBnB#readme"
+  "homepage": "https://github.com/Giftojcs/LightBnB#readme",
+  "dependencies": {
+    "pg": "^8.11.2"
+  }
 }

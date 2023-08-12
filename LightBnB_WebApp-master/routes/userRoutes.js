@@ -46,6 +46,51 @@ router.post("/login", (req, res) => {
   });
 });
 
+const getUserWithEmail = (email) => {
+  return pool
+    .query(`SELECT * FROM users WHERE email = $1`, [email])
+    .then((result) => {
+      if (result.rows.length > 0) {
+        return result.rows[0];
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+const getUserWithId = (id) => {
+  return pool
+    .query(`SELECT * FROM users WHERE id = $1`, [id])
+    .then((result) => {
+      if (result.rows.length > 0) {
+        return result.rows[0];
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+const addUser = (user) => {
+  const { name, email, password } = user;
+  return pool
+    .query(
+      `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *`,
+      [name, email, password]
+    )
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 // Log a user out
 router.post("/logout", (req, res) => {
   req.session.userId = null;

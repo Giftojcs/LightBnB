@@ -1,6 +1,5 @@
 LightBnB
 Project Structure
-.
 ├── db
 │   ├── json
 │   └── database.js
